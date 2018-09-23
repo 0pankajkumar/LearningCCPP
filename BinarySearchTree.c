@@ -27,9 +27,10 @@ struct node* insert(struct node* root, int a)
 	return root;
 }
 
+//InOrder traversal
 void LNR(struct node* root)
-{//printf("$");
-	if(root != NULL)
+{//printf("T");
+	if(root)
 	{
 		LNR(root -> left);
 		printf("%d ", root -> info);
@@ -37,18 +38,44 @@ void LNR(struct node* root)
 	}
 }
 
-;	//Root declared as Global
+//Preorder traversal
+void NLR(struct node* root)
+{
+    if(root)
+    {
+        printf("%d ", root -> info);
+        NLR(root -> left);
+        NLR(root -> right);
+    }
+}
+
+//Postorder traversal
+void LRN(struct node* root)
+{
+    if(root)
+    {
+        NLR(root -> left);
+        NLR(root -> right);
+        printf("%d ", root -> info);
+    }
+}
+
 
 void main()
 {
-struct node* root = createNode(20);
-insert(root, 19);
-insert(root, 150);
-insert(root, 13);
-insert(root, 1);
-insert(root, 1451);
-insert(root, 10);
-insert(root, 8);
+struct node* root = createNode(1);
+//insert(root, 1);
+insert(root, 2);
+insert(root, 3);
+insert(root, 4);
+insert(root, 7);
+insert(root, 5);
+insert(root, 6);
 
+printf("\nInOrder traversal\n");
 LNR(root);
+printf("\n\nPreOrder traversal\n");
+NLR(root);
+printf("\n\nPostOrder traversal\n");
+LRN(root);
 }
